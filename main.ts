@@ -1,6 +1,14 @@
 // main.ts
 import { handler } from './routes.ts';
+import { connectDB, disconnectDB } from './db.ts';
 
-// Use Deno.serve to start the server on port 8000
+// Connect to the database when the server starts
+await connectDB();
+
 console.log('Server running on http://localhost:8000/');
-Deno.serve({ port: 8000 }, handler);
+Deno.serve(handler);
+
+// Close the database connection when the process exits
+addEventListener('unload', async () => {
+  await disconnectDB();
+});
