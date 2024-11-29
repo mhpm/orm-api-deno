@@ -14,7 +14,9 @@ app.use(
   })
 );
 
-app.get('/', (c) => c.json({ message: 'Welcome to the User API! 🌟' }));
+app.get('/', (c) =>
+  c.json({ message: 'Welcome to the User API! version: 1.0.10 🌟' })
+);
 
 app.route('/users', userRouter);
 
