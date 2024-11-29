@@ -1,5 +1,4 @@
-import 'https://deno.land/x/dotenv@v3.2.2/load.ts';
-import { createClient } from 'jsr:@supabase/supabase-js@2';
+import { createClient } from 'supabase';
 
 const supabaseUrl = Deno.env.get('SUPABASE_URL') || '';
 const supabaseKey = Deno.env.get('SUPABASE_KEY') || '';

@@ -1,4 +1,4 @@
-import { Context } from 'https://deno.land/x/hono@v3.4.1/mod.ts';
+import { Context } from 'hono';
 
 export const handleError = (c: Context, error: unknown, status = 500) => {
   if (error instanceof Error) {

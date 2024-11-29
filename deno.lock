@@ -191,6 +191,7 @@
     "https://deno.land/x/hono@v3.4.1/hono-base.ts": "ff1d58c55101a98892f59686db59a693d2bc1ad7e35f03df91ce1b8f0fe1216d",
     "https://deno.land/x/hono@v3.4.1/hono.ts": "c185fae30dc3aa9966b0f3e8599f81314ba5e8621b907d27cffb77414a1c0908",
     "https://deno.land/x/hono@v3.4.1/http-exception.ts": "6071df078b5f76d279684d52fe82a590f447a64ffe1b75eb5064d0c8a8d2d676",
+    "https://deno.land/x/hono@v3.4.1/middleware/cors/index.ts": "c227e20bdd6481120e39a222e8dcec24ab129714748f68f3ddc859ef6855fe0f",
     "https://deno.land/x/hono@v3.4.1/mod.ts": "be5c09896830494225a12488e3e086b331b9c8829f66cc529cb8636a0c15f6fe",
     "https://deno.land/x/hono@v3.4.1/request.ts": "661ea39a5c698c8b2b6aef75c0f3acfeb94dc6fefdb3a86b9bf99c12c4d641fb",
     "https://deno.land/x/hono@v3.4.1/router.ts": "d03e2a9e862c898e8555b451ba80c65b1f39d487230815229e1f046dbd8546cb",
@@ -284,7 +285,8 @@
   },
   "workspace": {
     "dependencies": [
-      "jsr:@std/assert@1"
+      "jsr:@std/assert@1",
+      "jsr:@supabase/supabase-js@2"
     ]
   }
 }

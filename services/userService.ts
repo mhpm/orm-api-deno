@@ -1,4 +1,4 @@
-import { hash } from 'https://deno.land/x/bcrypt@v0.4.1/mod.ts';
+import { hash } from 'bcrypt';
 import { supabase } from '../lib/supabaseClient.ts';
 import type { IUser } from '../types/user.ts';
 
