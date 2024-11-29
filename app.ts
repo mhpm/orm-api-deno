@@ -6,8 +6,4 @@ const app = new Hono();
 app.get('/', (c) => c.json({ message: 'Welcome to the User API! 🌟' }));
 app.route('/users', userRouter);
 
-console.log('Server running on http://localhost:8000');
-
-app.fire(); // Start the Hono app
-
-Deno.serve(app.fetch);
+export default app;
