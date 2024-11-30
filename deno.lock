@@ -286,6 +286,7 @@
   "workspace": {
     "dependencies": [
       "jsr:@std/assert@1",
+      "jsr:@stdext/crypto@^0.0.6",
       "jsr:@supabase/supabase-js@2"
     ]
   }

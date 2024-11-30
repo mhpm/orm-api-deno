@@ -1,6 +1,6 @@
-import { hash } from 'bcrypt';
 import { supabase } from '../lib/supabaseClient.ts';
 import type { IUser } from '../types/user.ts';
+import { hashPassword } from '../utils/hashPassword.ts';
 
 export const userService = {
   async createUser(user: IUser): Promise<IUser> {
@@ -16,8 +16,12 @@ export const userService = {
     }
 
     // Hash the password before saving to the database
-    const hashedPassword = await hash(user.password as string);
-    const userWithHashedPassword = { ...user, password: hashedPassword };
+    const hashedPassword = await hashPassword(user.password as string);
+    const userWithHashedPassword: IUser = {
+      ...user,
+      password: hashedPassword,
+      avatar: 'https://avatars.githubusercontent.com/u/273650',
+    };
 
     const { data, error } = await supabase
       .from('users')
@@ -26,7 +30,9 @@ export const userService = {
       .single();
 
     if (error) throw new Error(error.message);
-    return data;
+
+    const { password, ...userWithoutPassword } = data;
+    return userWithoutPassword;
   },
 
   async getUsers(page: number, limit: number): Promise<IUser[]> {
@@ -39,7 +45,8 @@ export const userService = {
       .range(start, end);
 
     if (error) throw new Error(error.message);
-    return data;
+
+    return data.map(({ password, ...user }) => user);
   },
 
   async getUserById(id: number): Promise<IUser | null> {
@@ -50,7 +57,10 @@ export const userService = {
       .single();
 
     if (error) return null;
-    return data;
+
+    const { password, ...userWithoutPassword } = data;
+
+    return userWithoutPassword;
   },
 
   async updateUser(
@@ -70,7 +80,7 @@ export const userService = {
     }
 
     if (updatedUser.password) {
-      updatedUser.password = await hash(updatedUser.password);
+      updatedUser.password = await hashPassword(updatedUser.password);
     }
 
     const { data, error } = await supabase
@@ -81,7 +91,9 @@ export const userService = {
       .single();
 
     if (error) return null;
-    return data;
+
+    const { password, ...userWithoutPassword } = data;
+    return userWithoutPassword;
   },
 
   async deleteUser(id: number): Promise<IUser | null> {
@@ -93,6 +105,7 @@ export const userService = {
       .single();
 
     if (error) return null;
-    return data;
+
+    return data.id;
   },
 };
