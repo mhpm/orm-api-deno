@@ -14,9 +14,11 @@ app.use(
   })
 );
 
-app.get('/', (c) =>
-  c.json({ message: 'Welcome to the User API! version: 1.0.10 🌟' })
-);
+// Serve the index.html file
+app.get('/', async (c) => {
+  const htmlContent = await Deno.readTextFile('./index.html');
+  return c.html(htmlContent);
+});
 
 app.route('/users', userRouter);
 
